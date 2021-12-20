@@ -44,7 +44,8 @@ function addGrocery(event){
     //append u listu
     groceryList.appendChild(groceryDiv);
     //ocisti ulaz
-    groceryInput.value="";
+    groceryInputone.value="";
+    groceryInputtwo.value="";
 }
 
 function deleteCheck(e)
@@ -81,4 +82,27 @@ function deleteCheck(e)
         grocery.contentEditable = "false";
     }
     
+}
+if(window.localStorage.getItem("grocery") == undefined)
+{
+    let grocery = [groceryInputone.value + groceryInputtwo.value];
+    window.localStorage.setItem("grocery", JSON.stringify(grocery));
+}
+
+let groceryEX = window.localStorage.getItem("grocery");
+let grocery = JSON.parse(groceryEX);
+
+function check(){
+    if(groceryInputone.value != "" && groceryInputtwo.value != ""){
+        new item(groceryInputone.value + " " + groceryInputtwo.value);
+        grocery.push(groceryInputone.value + " " + groceryInputtwo.value);
+        window.localStorage.setitem("grocery", JSON.stringify(grocery));
+        groceryInputone.value = "";
+        groceryInputtwo.value = "";
+    } 
+}
+
+for(let v=0;v<grocery.length;v++)
+{
+    new item(grocery[v]);
 }
